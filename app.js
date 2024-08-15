@@ -15,7 +15,7 @@ app.use((req, res, next) => {
         '127.0.0.2',
         '123.45.67.89',
         '106.221.232.249',
-        '106.221.224.2'
+        '100.78.152.2'
     ].map(normalizeIp);
 
     // Get the client's IP address from x-forwarded-for or fall back to remoteAddress
