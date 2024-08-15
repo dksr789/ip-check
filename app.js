@@ -1,3 +1,14 @@
+const express = require('express');
+const app = express();
+const port = 80;
+
+// Function to normalize IP address
+const normalizeIp = (ip) => {
+    // Remove IPv6-mapped IPv4 prefix
+    return ip.replace(/^::ffff:/, '');
+};
+
+// Middleware to restrict IPs
 app.use((req, res, next) => {
     // List of allowed IPs, normalized
     const allowedIps = ['127.0.0.2', '123.45.67.89', '106.221.232.249'].map(normalizeIp);
@@ -22,4 +33,12 @@ app.use((req, res, next) => {
     } else {
         res.status(403).send('Access denied'); // IP is not allowed
     }
+});
+
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
+
+app.listen(port, () => {
+    console.log(`Server is running on http://127.0.0.1:${port}`);
 });
