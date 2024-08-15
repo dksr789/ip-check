@@ -11,7 +11,12 @@ const normalizeIp = (ip) => {
 // Middleware to restrict IPs
 app.use((req, res, next) => {
     // List of allowed IPs, normalized
-    const allowedIps = ['127.0.0.2', '123.45.67.89', '106.221.232.249'].map(normalizeIp);
+    const allowedIps = [
+        '127.0.0.2',
+        '123.45.67.89',
+        '106.221.232.249',
+        '106.221.224.2'
+    ].map(normalizeIp);
 
     // Get the client's IP address from x-forwarded-for or fall back to remoteAddress
     let clientIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress;
